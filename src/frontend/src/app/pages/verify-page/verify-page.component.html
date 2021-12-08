@@ -1,0 +1,51 @@
+<div class="container">
+  <section class="h-100">
+    <div class="container h-100">
+      <div class="row justify-content-sm-center h-100">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+          <div class="text-center my-5">
+            <img src="/assets/images/verify/verify.png" alt="logo" width="100">
+          </div>
+          <div class="card shadow-lg">
+            <div class="card-body p-5">
+              <h1 class="fs-4 card-title fw-bold mb-4">Проверка пропуска</h1>
+              <form class="needs-validation" novalidate="" autocomplete="off">
+                <div class="mb-3">
+                  <label class="mb-2 text-muted" for="email">Номер пропуска</label>
+                  <input id="email" type="text" class="form-control" name="text" value="" required autofocus required="">
+                </div>
+                <div class="mb-3">
+                  <div class="mb-2 w-100">
+                    <label class="text-muted" for="password">Фамилия</label>
+                  </div>
+                  <input id="password" type="text" class="form-control" name="text" required="">
+                </div>
+
+
+              </form>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-secondary ms-auto" (click)="verify = (verify==true) ? false : true; openModal(template)">
+                  Проверить
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Просмотр пропуска</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-modal-pass></app-modal-pass>
+    </div>
+  </ng-template>
+
+</div>

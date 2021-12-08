@@ -1,0 +1,14 @@
+.pages {
+
+}
+
+@media print {
+  .modal-header {
+    display: none !important;
+  }
+}
+
+tr {
+  vertical-align: middle;
+}
+

@@ -1,0 +1,21 @@
+
+tr {
+  vertical-align: middle;
+}
+
+.btn-modal {
+  line-height: 2em;
+  text-align: center;
+  text-decoration: none;
+
+  outline: none;
+
+}
+.btn-modal:hover {
+  background: #dcdcdc linear-gradient(#fff, #dcdcdc);
+  box-shadow: 0 0 0 1px #aaa inset, 0 1px 1px #aaa;
+}
+.btn-modal:active {
+  background: none;
+  box-shadow: 0 0 0 1px #bbb inset, 0 1px 3px rgba(0,0,0,.5) inset, 0 1px 2px #fff;
+}

@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.brd {
+  border: 4px double black; /* Параметры границы */
+  padding: 10px; /* Поля вокруг текста */
+  background-image: url(src/assets/images/polytech/print-logo.png);
+  background-size: 250px;
+  background-repeat: no-repeat;
+  width: 370px;
+  height: auto;
+  margin: 0 auto;
+  background-position: center;
+  font-weight: bold;
+  }
+
+.container {
+  position: relative;
+}
+
+.print-brdcar{
+  position: absolute;
+  left: 100%;
+}
+
+.brdcar {
+  border: 4px double black; /* Параметры границы */
+  padding: 10px; /* Поля вокруг текста */
+  background-image: url(src/assets/images/polytech/print-logo.png);
+  background-size: 250px;
+  background-repeat: no-repeat;
+  width: 790px;
+  height: auto;
+  margin: 0 auto;
+  background-position: center;
+  font-weight: bold;
+
+
+
+}
+
+
+
+h1 {
+  font-size: 800%;
+}
+
+.addinfo {
+
+}
+
+.mobile-text {
+  text-align: center;
+  list-style: none;
+}
+.mobile-text ul {
+  list-style: none;
+}
+
+.right {
+  float: right;
+}

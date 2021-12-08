@@ -1,0 +1,154 @@
+<div class="container">
+
+  <h3 class="p-4 text-center">Управление и заказ пропусков
+
+    <div class="btn-group" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle"
+              aria-controls="dropdown-basic">
+        Создать пропуск <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item btn" (click)="openModal(createperson)">Пропуск на человека</a></li>
+        <li role="menuitem"><a class="dropdown-item btn" (click)="openModal(createcar)">Пропуск для автомобиля</a></li>
+      </ul>
+    </div>
+
+  </h3>
+
+
+
+
+
+
+
+  <div class="pages">
+    <tabset>
+      <tab heading="Заказанные пропуски" id="tab1">
+
+        <div class="table-responsive">
+          <table class="table table-content" >
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Фамилия Имя Отчество</th>
+              <th scope="col">Действует с</th>
+              <th scope="col">Действует до</th>
+              <th scope="col">Статус</th>
+              <th scope="col">Действия</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr>
+              <th scope="row">1</th>
+              <td>Иванов Григорий Александрович</td>
+              <td>07.12.2021</td>
+              <td>07.12.2021</td>
+              <td>Заказан</td>
+              <td style="text-align: center" (click)="openModal(openpass)"><a class="btn">&#9881;</a></td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+
+      </tab>
+      <tab heading="Выданные пропуски">
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Фамилия Имя Отчество</th>
+            <th scope="col">Действует с</th>
+            <th scope="col">Действует до</th>
+            <th scope="col">Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Иванов Григорий Александрович</td>
+            <td>07.12.2021</td>
+            <td>07.12.2021</td>
+            <td style="text-align: center" (click)="openModal(openpass)"><a class="btn">&#9881;</a></td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </tab>
+      <tab heading="Закрытые пропуски">
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Фамилия Имя Отчество</th>
+            <th scope="col">Действует с</th>
+            <th scope="col">Действует до</th>
+            <th scope="col">Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Иванов Григорий Александрович</td>
+            <td>07.12.2021</td>
+            <td>07.12.2021</td>
+            <td style="text-align: center" (click)="openModal(openpass)"><a class="btn">&#9881;</a></td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+
+
+  <ng-template #createperson>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Создание пропуска</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-new-pass [type] = "0"></app-new-pass>
+    </div>
+  </ng-template>
+
+  <ng-template #createcar>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Создание пропуска</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-new-pass [type] = "1"></app-new-pass>
+    </div>
+  </ng-template>
+
+  <ng-template #openpass>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Управление пропуском</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h5 class="text-center" *ngIf="openedpass === true">Выберите действие</h5>
+      <div class="d-grid gap-2 col-6 mx-auto" *ngIf="openedpass === true">
+        <button class="btn btn-secondary" type="button" (click)="openedpass = (openedpass === false) ? true : false;">Открыть пропуск</button>
+        <app-print-pass [print] = "true"></app-print-pass>
+        <button class="btn btn-warning" type="button">Отклонить пропуск</button>
+        <button class="btn btn-danger" type="button">Удалить пропуск</button>
+      </div>
+
+
+      <app-modal-pass *ngIf="openedpass===false"></app-modal-pass>
+    </div>
+  </ng-template>
+
+</div>
