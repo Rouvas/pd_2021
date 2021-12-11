@@ -7,6 +7,8 @@ import {WorkerMainComponent} from './worker/worker-main/worker-main.component';
 import {BureauMainComponent} from './bureau/bureau-main/bureau-main.component';
 import {AdminMainComponent} from './administrator/admin-main/admin-main.component';
 import {PrintPassComponent} from './pages/print-pass/print-pass.component';
+import {UsersComponent} from './administrator/pages/users/users.component';
+import {PassesComponent} from './administrator/pages/passes/passes.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -20,7 +22,10 @@ const routes: Routes = [
 
   {path: 'bureau', component: BureauMainComponent},
 
-  {path: 'administrator' , component: AdminMainComponent}
+  {path: 'administrator' , component: AdminMainComponent, children: [
+      {path: 'users', component: UsersComponent},
+      {path: 'passes', component: PassesComponent}
+    ]}
 ];
 
 @NgModule({

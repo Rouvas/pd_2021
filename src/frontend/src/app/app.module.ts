@@ -24,6 +24,8 @@ import { AdminMainComponent } from './administrator/admin-main/admin-main.compon
 import { PrintPassComponent } from './pages/print-pass/print-pass.component';
 import { NewPassComponent } from './pages/new-pass/new-pass.component';
 import { ModalPassComponent } from './pages/modal-pass/modal-pass.component';
+import { UsersComponent } from './administrator/pages/users/users.component';
+import { PassesComponent } from './administrator/pages/passes/passes.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ModalPassComponent } from './pages/modal-pass/modal-pass.component';
     AdminMainComponent,
     PrintPassComponent,
     NewPassComponent,
-    ModalPassComponent
+    ModalPassComponent,
+    UsersComponent,
+    PassesComponent
   ],
   imports: [
     BrowserModule,

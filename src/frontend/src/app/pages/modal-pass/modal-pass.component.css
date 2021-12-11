@@ -14,6 +14,22 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 430px) {
+  .brd {width: 350px}
+}
+
+@media screen and (max-width: 400px) {
+  .brd {width: 320px;}
+}
+
+@media screen and (max-width: 365px) {
+  .brd {width: 300px}
+}
+
+@media screen and (max-width: 320px) {
+  .brd {width: 255px}
+}
+
 
 
 .brdcar {
