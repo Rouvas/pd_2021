@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 // TODO: add error handler
 router.get('/:id', async (req, res, next) => {
   try {
-    let user = User.findOne({_id: req.params.id})
+    let user = await User.findById(req.params.id)
     res.status(200).send(user)
   } catch (error) {
     res.status(404).send({message: 'User not found'})
@@ -57,22 +57,30 @@ router.post('/', async (req, res, next) => {
 // TODO: add jwt check
 // TODO: add roles check
 // TODO: add error handler
-// FIXME: CANNOT PATCH
 router.patch('/:id', async (req, res, next) => {
   try {
-    let { id } = req.params.id
+    let id = req.params.id
     let body = req.body
 
     let user = await User.findOneAndUpdate(
       {_id: id},
       {
         $set: {
-          ...body
+          login: body?.login
         }
       }
     )
 
     res.status(200).send(user)
+  } catch (error) {
+    res.status(500).send("add Error handler")
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.params.id)
+    res.status(200).send({message: 'User was deleted successfuly'})
   } catch (error) {
     res.status(500).send("add Error handler")
   }

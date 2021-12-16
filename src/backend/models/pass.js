@@ -37,7 +37,7 @@ const PassSchema = new mongoose.Schema({
 
 PassSchema.plugin(uniqueValidator)
 
-const Pass = mongoose.Schema('Pass', PassSchema, 'pacs')
+const Pass = mongoose.model('Pass', PassSchema, 'pacs')
 
 
 module.exports = Pass
