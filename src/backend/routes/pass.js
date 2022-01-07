@@ -4,7 +4,7 @@ router = express.Router()
 
 const Pass = require('../models/pass')
 
-const {workerCheck, bureauCheck } = require('../common.js')
+const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js')
 
 
 router.get('/', async (req, res, next) => {
@@ -25,7 +25,7 @@ router.get('/verify/:id', async (req, res, next) => {
   }
 })
 
-router.post('/',  async (req, res, next) => {
+router.post('/', jwtCheck,  async (req, res, next) => {
   try {
     let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type} = req.body
 
@@ -66,7 +66,7 @@ router.post('/',  async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminCheck, bureauCheck,  async (req, res, next) => {
   try {
     await Pass.findByIdAndDelete(req.params.id)
     res.status(200).send({message: 'Pass was deleted successfuly'})
@@ -76,7 +76,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.patch('/change-status/:id', async (req, res, next) => {
+router.patch('/change-status/:id', adminCheck, bureauCheck, async (req, res, next) => {
   try {
     let id = req.params.id
     let body = req.body
