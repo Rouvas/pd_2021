@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,12 +20,16 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { QRCodeModule } from 'angularx-qrcode';
 
+import {HttpClientModule} from '@angular/common/http';
 import { AdminMainComponent } from './administrator/admin-main/admin-main.component';
 import { PrintPassComponent } from './pages/print-pass/print-pass.component';
 import { NewPassComponent } from './pages/new-pass/new-pass.component';
 import { ModalPassComponent } from './pages/modal-pass/modal-pass.component';
 import { UsersComponent } from './administrator/pages/users/users.component';
 import { PassesComponent } from './administrator/pages/passes/passes.component';
+import {FormsModule} from '@angular/forms';
+
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -53,8 +57,13 @@ import { PassesComponent } from './administrator/pages/passes/passes.component';
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     QRCodeModule,
+    FormsModule,
+    HttpClientModule,
+    NgxSpinnerModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
