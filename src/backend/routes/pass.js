@@ -2,9 +2,11 @@
 const express = require('express'),
 router = express.Router()
 
+const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js')
+const {ErrorHandler} = require('../error')
+
 const Pass = require('../models/pass')
 
-const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js')
 
 
 router.get('/', async (req, res, next) => {
@@ -12,16 +14,17 @@ router.get('/', async (req, res, next) => {
     let passes = await Pass.find()
     res.status(200).send(passes)
   } catch (error) {
-    res.status(500).send("Что-то пошло не так!")
+    next(error)
   }
 })
 
-router.get('/verify/:id', async (req, res, next) => {
+router.post('/verify/:id', async (req, res, next) => {
   try {
     let pass = await Pass.findById(req.params.id)
+    if (!pass) throw new ErrorHandler(404, "Пропуск не найден!")
     res.status(200).send(pass)
   } catch (error) {
-    res.status(500).send("Что-то пошло не так!")
+    next(error)
   }
 })
 
@@ -61,8 +64,7 @@ router.post('/', jwtCheck,  async (req, res, next) => {
 
     res.status(200).send(pass)
   } catch (error) {
-    console.log(error)
-    res.status(500).send("Что-то пошло не так!")
+    next(error)
   }
 })
 
@@ -71,8 +73,7 @@ router.delete('/:id', adminCheck, bureauCheck,  async (req, res, next) => {
     await Pass.findByIdAndDelete(req.params.id)
     res.status(200).send({message: 'Pass was deleted successfuly'})
   } catch (error) {
-    console.log(error)
-    res.status(500).send({message: "Пропуск не найден!"})
+    next(error)
   }
 })
 
@@ -93,11 +94,11 @@ router.patch('/change-status/:id', adminCheck, bureauCheck, async (req, res, nex
     res.status(200).send(user)
   } catch (error) {
     console.log(error)
-    res.status(500).send("Что-то пошло не так!")
+    next(error)
   }
 })
 
-router.get('/verify-pass', async (req, res, next) => {
+router.post('/verify-pass', async (req, res, next) => {
   try {
     let {surname, uniqueId} = req.body
 
@@ -107,8 +108,7 @@ router.get('/verify-pass', async (req, res, next) => {
 
     res.status(200).send(pass)
   } catch (error) {
-    console.log(error)
-    res.status(500).send({message: 'Что-то пошло не так!'})
+    next(error)
   }
 })
 

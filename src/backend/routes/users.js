@@ -1,33 +1,32 @@
-const User = require('../models/user')
-
 const express = require('express'),
 router = express.Router()
 
-// TODO: add jwt check
-// TODO: add error handler
+
+const User = require('../models/user')
+const {ErrorHandler} = require('../error')
+
+
+
 router.get('/', async (req, res, next) => {
   try {
     let users = await User.find()
+    if (!users) throw new ErrorHandler(404, 'Пользователи не найдены')
     res.status(200).send(users)
   } catch (error) {
-    res.status(404).send({message: "Users not found"})
+    next(error)
   }
 })
 
-// TODO: add jwt check
-// TODO: add error handler
 router.get('/:id', async (req, res, next) => {
   try {
     let user = await User.findById(req.params.id)
+    if (!user) throw new ErrorHandler(404, 'пользователь не найден!')
     res.status(200).send(user)
   } catch (error) {
-    res.status(404).send({message: 'User not found'})
+    next(error)
   }
 })
 
-// TODO: add jwt check
-// TODO: add roles check
-// TODO: add error handler
 router.post('/', async (req, res, next) => {
   try {
     let {login, password, name, surname, lastname, role, department} = req.body
@@ -49,14 +48,10 @@ router.post('/', async (req, res, next) => {
 
     res.status(200).send(newUser)
   } catch (error) {
-    res.status(500).send("add Error handler")
+    next(error)
   }
 })
 
-
-// TODO: add jwt check
-// TODO: add roles check
-// TODO: add error handler
 router.patch('/:id', async (req, res, next) => {
   try {
     let id = req.params.id
@@ -73,7 +68,7 @@ router.patch('/:id', async (req, res, next) => {
 
     res.status(200).send(user)
   } catch (error) {
-    res.status(500).send("add Error handler")
+    next(error)
   }
 })
 
@@ -82,7 +77,7 @@ router.delete('/:id', async (req, res, next) => {
     await User.findByIdAndDelete(req.params.id)
     res.status(200).send({message: 'User was deleted successfuly'})
   } catch (error) {
-    res.status(500).send("add Error handler")
+    next(error)
   }
 })
 

@@ -2,12 +2,12 @@ const express = require('express'),
 router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
+
+const {ErrorHandler} = require('../error')
 
 const User = require('../models/user')
 const Session = require('../models/sessions')
-const mongoose = require('mongoose')
-
-
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -19,10 +19,10 @@ router.post('/login', async (req, res, next) => {
           if (passwordIsEqual) {
             return user
           } else {
-            res.status(403).send('Пароль не верный!')
+            throw new ErrorHandler(403, 'Пароль не верный!')
           }
         } else {
-          res.status(404).send('Пользователь не найден!')
+          throw new ErrorHandler(404, 'Пользователь не найден!')
         }
       })
       .then( async ({_id, role, name, surname, lastname, department}) => {
@@ -41,24 +41,22 @@ router.post('/login', async (req, res, next) => {
           user: { _id, role, name, surname, lastname, department}
         })
       })
-  } catch (error) {
-    res.status(500)
+  } catch (err) {
+    next(err)
   }
 })
 
-// TODO: add jwt check
-// TODO: add error handler
+
 router.post('/logout', async (req, res, next) => {
   try {
     await Session.deleteMany({ _id: req.tokenData._id })
     res.status(200).send({message: "Loged Out"})
   } catch (error) {
-    res.status(500).send({message: 'Something goes wrong'})
+    next(error)
   }
 })
 
-// TODO: add jwt check
-// TODO: add error handler
+
 router.post('/register', async (req, res, next) => {
   try {
     let {login, password, name, surname, lastname, role, department} = req.body
@@ -92,7 +90,7 @@ router.post('/register', async (req, res, next) => {
 
     res.status(200).send({accessToken, user: newUser})
   } catch (error) {
-    res.status(500).send({message: error})
+    next(error)
   }
 })
 

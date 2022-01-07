@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 require('dotenv').config()
 const app = express()
+const { handleError } = require('./error.js')
 
 // import Routes
 const authRoutes = require('./routes/auth.js')
@@ -38,6 +39,9 @@ app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
 app.use('/api/pass', passRoutes)
+app.use((err, req, res, next) => {
+  handleError(err, res)
+})
 
 app.route('/').get((req, res) => {
   res.status(200).send('Rouvas gay')
