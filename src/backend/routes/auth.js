@@ -41,9 +41,8 @@ router.post('/login', async (req, res, next) => {
           user: { _id, role, name, surname, lastname, department}
         })
       })
-      .catch((err) => res.status(500).send({message: err.message}))
   } catch (error) {
-    console.log(error)
+    res.status(500).send({message: err.message})
   }
 })
 

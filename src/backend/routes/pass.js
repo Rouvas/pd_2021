@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
     let passes = await Pass.find()
     res.status(200).send(passes)
   } catch (error) {
-    res.status(500).send("InternalError3")
+    res.status(500).send("Что-то пошло не так!")
   }
 })
 
@@ -21,7 +21,7 @@ router.get('/verify/:id', async (req, res, next) => {
     let pass = await Pass.findById(req.params.id)
     res.status(200).send(pass)
   } catch (error) {
-    res.status(500).send("InternalError4")
+    res.status(500).send("Что-то пошло не так!")
   }
 })
 
@@ -62,7 +62,7 @@ router.post('/',  async (req, res, next) => {
     res.status(200).send(pass)
   } catch (error) {
     console.log(error)
-    res.status(500).send("InternalError2")
+    res.status(500).send("Что-то пошло не так!")
   }
 })
 
@@ -71,11 +71,12 @@ router.delete('/:id', async (req, res, next) => {
     await Pass.findByIdAndDelete(req.params.id)
     res.status(200).send({message: 'Pass was deleted successfuly'})
   } catch (error) {
-    res.status(500).send("InternalError")
+    console.log(error)
+    res.status(500).send({message: "Пропуск не найден!"})
   }
 })
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/change-status/:id', async (req, res, next) => {
   try {
     let id = req.params.id
     let body = req.body
@@ -91,7 +92,8 @@ router.patch('/:id', async (req, res, next) => {
 
     res.status(200).send(user)
   } catch (error) {
-    res.status(500).send("InternalError")
+    console.log(error)
+    res.status(500).send("Что-то пошло не так!")
   }
 })
 
@@ -101,11 +103,14 @@ router.get('/verify-pass', async (req, res, next) => {
 
     let pass = await Pass.findOne({surname, uniqueId})
 
+    if (!pass) res.status(404).send({message: "Пропуск не найден"})
+
     res.status(200).send(pass)
   } catch (error) {
     console.log(error)
-    res.status(404).send("Pass not found")
+    res.status(500).send({message: 'Что-то пошло не так!'})
   }
 })
+
 
 module.exports = router
