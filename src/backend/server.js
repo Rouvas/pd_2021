@@ -13,6 +13,7 @@ const authRoutes = require('./routes/auth.js')
 const userRoutes = require('./routes/users.js')
 const passRoutes = require('./routes/pass.js')
 const { error } = require('console')
+const { adminCheck, jwtCheck, hackCheck } = require('./common.js')
 
 
 // connect to db
@@ -35,7 +36,7 @@ app.use(express.json())
 
 // Routes middlewares
 app.use('/api/auth', authRoutes)
-app.use('/api/users', userRoutes)
+app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
 app.use('/api/pass', passRoutes)
 
 app.route('/').get((req, res) => {

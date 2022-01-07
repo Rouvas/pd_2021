@@ -19,10 +19,10 @@ router.post('/login', async (req, res, next) => {
           if (passwordIsEqual) {
             return user
           } else {
-            res.status(403).send('Password not passed!')
+            res.status(403).send('Пароль не верный!')
           }
         } else {
-          res.status(404).send('User not found!')
+          res.status(404).send('Пользователь не найден!')
         }
       })
       .then( async ({_id, role, name, surname, lastname, department}) => {
