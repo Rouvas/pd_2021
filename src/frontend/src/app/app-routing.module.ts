@@ -16,6 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
   {path: 'verify-pass', component: VerifyPageComponent},
+  {path: 'verify-pass/id/:id', component: VerifyPageComponent},
+
   {path: 'print-pass', component: PrintPassComponent},
 
   {path: 'departament', component: WorkerMainComponent},

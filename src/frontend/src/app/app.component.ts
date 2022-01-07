@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   title = 'PolyPACS';
 
+  // tslint:disable-next-line:typedef
   ngOnInit() {
     /** spinner starts on init */
     this.spinner.show();
@@ -20,4 +21,9 @@ export class AppComponent implements OnInit {
       this.spinner.hide();
     }, 2000);
   }
+
+  checkAccount() {
+    console.log(localStorage.getItem('accessToken'));
+  }
 }
+

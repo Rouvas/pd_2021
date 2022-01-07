@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   constructor(public srv: HttpService) { }
 
-  email = '';
+  login = '';
   password = '';
 
   ngOnInit(): void {

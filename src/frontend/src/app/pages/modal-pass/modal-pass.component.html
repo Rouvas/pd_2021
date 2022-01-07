@@ -1,25 +1,25 @@
-<div class="container" *ngIf="type === 0">
+<div class="container" *ngIf="type == 0">
   <div class="brd">
     <h4 class="text-center">Московский Политех</h4>
     <p class="text-center">Пропуск на территорию университета</p>
     <ul>
-      <li>Уникальный номер пропуска: 878787</li>
+      <li>Уникальный номер пропуска: {{pass.uniqueId}}</li>
     </ul>
 
     <ul>
-      <li>Фамилия: Иванов</li>
-      <li>Имя: Григорий</li>
-      <li>Отчество: Александрович</li>
-      <li>Серия и номер паспорта: 45 25 115577</li>
+      <li>Фамилия: {{pass.surname}}</li>
+      <li>Имя: {{pass.name}}</li>
+      <li>Отчество: {{pass.lastname}}</li>
+      <li>Серия и номер паспорта: {{pass.passport}}</li>
     </ul>
 
     <ul>
-      <li>Следует в аудиторию: Н516</li>
+      <li>Следует в аудиторию: {{pass.goingTo}}</li>
     </ul>
 
     <ul>
-      <li>Действует с: 07.12.2021</li>
-      <li>Действует до: 07.12.2021</li>
+      <li>Действует с: {{pass.date | date: 'dd.MM.YYYY'}}</li>
+      <li>Действует до: {{pass.endDate | date: 'dd.MM.YYYY'}}</li>
     </ul>
 
     <ul>
@@ -32,20 +32,25 @@
 </div>
 
 
-  <div class="brdcar" *ngIf="type === 1">
+  <div class="brdcar" *ngIf="type == 1">
     <div class="mobile-text">
       <ul>
-        <li>Номер автомобиля: <b>М573ЕХ799</b></li>
-        <li>Разрешенные локации: <b style="border: 4px double black; margin-left: 2px;">БС</b> <b style="border: 4px double black; margin-left: 2px;">ПК</b></li>
+        <li>Номер автомобиля: <b>{{pass.carPlate}}</b></li>
+        <li>Разрешенные локации:
+          <b *ngIf="avalibleLocs.bs === 1" style="border: 4px double black; margin-left: 2px;">БС</b>
+          <b *ngIf="avalibleLocs.pk === 1" style="border: 4px double black; margin-left: 2px;">ПК</b>
+          <b *ngIf="avalibleLocs.av === 1" style="border: 4px double black; margin-left: 2px;">АВ</b>
+          <b *ngIf="avalibleLocs.pr === 1" style="border: 4px double black; margin-left: 2px;">ПР</b>
+        </li>
       </ul>
 
       <ul>
-        <li>Сотрудник: Гайдучик Александр Валерьевич</li>
+        <li>Сотрудник: {{pass.surname}} {{pass.name}} {{pass.lastname}}</li>
       </ul>
 
       <ul>
-        <li>Действует с: 07.12.2021</li>
-        <li>Действует до: 07.12.2021</li>
+        <li>Действует с: {{pass.date | date: 'dd.MM.YYYY'}}</li>
+        <li>Действует до: {{pass.endDate | date: 'dd.MM.YYYY'}}</li>
       </ul>
 
       <ul>
@@ -53,6 +58,7 @@
       </ul>
      </div>
 
-  <p class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>
+  <p *ngIf="statusCondition === 1" class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>
+  <p *ngIf="statusCondition === 0" class="text-center">Статус пропуска: <b style="color: red;">Недействителен</b></p>
 </div>
 
