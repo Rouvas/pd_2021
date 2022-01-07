@@ -37,7 +37,7 @@ app.use(express.json())
 // Routes middlewares
 app.use('/api/auth', authRoutes)
 app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
-app.use('/api/pass', passRoutes)
+app.use('/api/pass', jwtCheck, passRoutes)
 
 app.route('/').get((req, res) => {
   res.status(200).send('Rouvas gay')

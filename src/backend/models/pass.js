@@ -2,10 +2,22 @@ const uniqueValidator = require('mongoose-unique-validator')
 const mongoose = require('mongoose')
 
 const PassSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+  name: {
+    type: String,
+    required: true,
+  },
+  uniqueId: {
+    type: Number,
+    default: Math.floor(Math.random() * (99999 - 10000) + 10000),
+    required: false
+  },
+  surname: {
+    type: String,
+    required: true,
+  },
+  lastname: {
+    type: String,
+    required: true,
   },
   passport: {
     type: String,
@@ -13,8 +25,19 @@ const PassSchema = new mongoose.Schema({
     unique: true
   },
   goingTo: {
-    type: String
+    type: String,
+    required: false
   },
+  carPlate: {
+    type: String,
+    required: false,
+    default: null
+  },
+  allowedLocations: [{
+    type: String,
+    required: false,
+    enum: ['0', '1', '2', '3']
+  }],
   date: {
     type: Date,
     default: Date.now
@@ -29,9 +52,14 @@ const PassSchema = new mongoose.Schema({
     required: true
   },
   status: {
-    type: Number,
+    type: String,
     required: true,
     enum: ['0', '1', '2']
+  },
+  type: {
+    type: String,
+    required: true,
+    enum: ['0', '1']
   }
 })
 

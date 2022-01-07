@@ -12,7 +12,6 @@ module.exports = {
   },
   workerCheck: (req, res, next) => {
     if (req.tokenData.role === 'worker') {
-
       next()
     } else {
       res.status(401).send({message: "Доступ закрыт!"})
@@ -20,7 +19,6 @@ module.exports = {
   },
   bureauCheck: (req, res, next) => {
     if (req.tokenData.role === 'bureau') {
-
       next()
     } else {
       res.status(401).send({message: "Доступ закрыт!"})
