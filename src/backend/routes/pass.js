@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/verify/:id', async (req, res, next) => {
+router.get('/verify/:id', async (req, res, next) => {
   try {
     let pass = await Pass.findById(req.params.id)
     if (!pass) throw new ErrorHandler(404, "Пропуск не найден!")
