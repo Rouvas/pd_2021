@@ -13,8 +13,9 @@ const { handleError } = require('./error.js')
 const authRoutes = require('./routes/auth.js')
 const userRoutes = require('./routes/users.js')
 const passRoutes = require('./routes/pass.js')
+const departmentRoutes = require('./routes/departments.js')
 const { error } = require('console')
-const { adminCheck, jwtCheck, hackCheck } = require('./common.js')
+const { adminCheck, jwtCheck, hackCheck, bureauCheck, workerCheck } = require('./common.js')
 
 
 // connect to db
@@ -39,6 +40,7 @@ app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
 app.use('/api/pass', passRoutes)
+app.use('/api/department', jwtCheck, departmentRoutes)
 app.use((err, req, res, next) => {
   handleError(err, res)
 })
