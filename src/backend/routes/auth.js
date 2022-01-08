@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
 const {ErrorHandler} = require('../error')
+const {jwtCheck} = require('../common')
 
 const User = require('../models/user')
 const Session = require('../models/sessions')
@@ -47,9 +48,10 @@ router.post('/login', async (req, res, next) => {
 })
 
 
-router.post('/logout', async (req, res, next) => {
+router.post('/logout', jwtCheck, async (req, res, next) => {
   try {
-    await Session.deleteMany({ _id: req._id })
+    console.log(req.tokenData)
+    await Session.deleteMany({ userID: req.tokenData._id})
     res.status(200).send({message: "Loged Out"})
   } catch (error) {
     next(error)
