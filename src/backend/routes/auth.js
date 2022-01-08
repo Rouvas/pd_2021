@@ -49,7 +49,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/logout', async (req, res, next) => {
   try {
-    await Session.deleteMany({ _id: req.tokenData._id })
+    await Session.deleteMany({ _id: req._id })
     res.status(200).send({message: "Loged Out"})
   } catch (error) {
     next(error)

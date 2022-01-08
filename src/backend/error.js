@@ -21,7 +21,7 @@ const handleError = (err, res) => {
     let { code, message } = err
     return res.status(code).send({message})
   }
-  return res.status(500).send({message: "Что-то пошло не так!", error: error})
+  return res.status(500).send({message: "Что-то пошло не так!", error: err})
 }
 module.exports = {
   ErrorHandler,
