@@ -1,6 +1,7 @@
 
 const express = require('express'),
 router = express.Router()
+const axios = require('axios')
 
 const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js')
 const {ErrorHandler} = require('../error')
@@ -77,7 +78,7 @@ router.delete('/:id', adminCheck, bureauCheck,  async (req, res, next) => {
   }
 })
 
-router.patch('/change-status/:id', adminCheck, bureauCheck, async (req, res, next) => {
+router.patch('/change-status/:id', bureauCheck, async (req, res, next) => {
   try {
     let id = req.params.id
     let body = req.body
@@ -111,6 +112,43 @@ router.post('/verify-pass', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/update-status', async (req, res, next) => {
+  try {
+    let passes = await Pass.find()
+    console.log("PASSES:::", passes)
+    for (pass of passes) {
+      console.log("PASS:::", pass)
+      const now = new Date()
+      if (now.getDate() > pass.endDate.getDate() && now.getMonth() == pass.endDate.getMonth() && now.getFullYear() == pass.endDate.getFullYear()) {
+        await Pass.findOneAndUpdate(
+          {_id: pass._id},
+          {
+            $set: {
+              status: "2"
+            }
+          }
+        )
+      }
+    }
+    res.status(200).send({message: "Pass table was successefuly updated on date check"})
+  } catch (error) {
+    next(error)
+  }
+})
+
+const OneDay = 86400000
+
+const watchStatus = async () => {
+  setInterval(async () => {
+    axios.post('http://localhost:3000/api/pass/update-status')
+      .then(res => console.log("Made a request on update pass table to check date", res.data))
+  }, OneDay)
+}
+
+watchStatus()
+
+
 
 
 module.exports = router
