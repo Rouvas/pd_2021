@@ -31,7 +31,7 @@ router.get('/verify/:id', async (req, res, next) => {
 
 router.post('/', jwtCheck,  async (req, res, next) => {
   try {
-    let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type} = req.body
+    let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type, date, endDate} = req.body
 
     let pass
 
@@ -42,6 +42,8 @@ router.post('/', jwtCheck,  async (req, res, next) => {
         createdBy: req.tokenData._id,
         status: req.tokenData.role == 'worker' ? '0' : '1',
         name: name,
+        date: date,
+        endDate: endDate,
         surname: surname,
         lastname: lastname,
         type: type,
@@ -53,6 +55,8 @@ router.post('/', jwtCheck,  async (req, res, next) => {
         createdBy: req.tokenData._id,
         status: req.tokenData.role == 'worker' ? '0' : '1',
         name: name,
+        date: date,
+        endDate: endDate,
         surname: surname,
         lastname: lastname,
         type: type,

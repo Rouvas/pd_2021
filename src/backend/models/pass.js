@@ -21,8 +21,7 @@ const PassSchema = new mongoose.Schema({
   },
   passport: {
     type: String,
-    required: true,
-    unique: true
+    required: false,
   },
   goingTo: {
     type: String,
