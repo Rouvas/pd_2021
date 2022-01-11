@@ -34,6 +34,7 @@ router.post('/', jwtCheck,  async (req, res, next) => {
     let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type, date, endDate} = req.body
 
     let pass
+    if (!endDate && date) endDate = date
 
     if (type === '0') {
       pass = new Pass({
