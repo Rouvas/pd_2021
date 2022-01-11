@@ -43,7 +43,7 @@ const PassSchema = new mongoose.Schema({
   },
   endDate: {
     type: Date,
-    default: new Date(+new Date() + 86400000)
+    default: new Date()
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
