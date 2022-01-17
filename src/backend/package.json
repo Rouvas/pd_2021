@@ -24,6 +24,7 @@
     "mongoose": "^6.0.15",
     "mongoose-unique-validator": "^3.0.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "web-push": "^3.4.5"
   }
 }

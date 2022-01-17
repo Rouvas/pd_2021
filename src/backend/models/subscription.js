@@ -5,7 +5,10 @@ const SubscriptionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  expirationTime,
+  expirationTime: {
+    type: Number,
+    default: null
+  },
   keys: {
     p256dh: {
       type: String,

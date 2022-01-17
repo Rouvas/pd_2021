@@ -1,9 +1,10 @@
 const express = require('express'),
 router = express.Router()
+const webpush = require('web-push');
 
 const {ErrorHandler} = require('../error')
-const Pass = require('../models/pass')
 
+const Pass = require('../models/pass')
 const Subscription = require('../models/subscription')
 
 
@@ -30,7 +31,7 @@ router.post('/send-notification', async (req, res, next) => {
     const notificationPayload = {
       notification: {
         title: 'PolyPacs',
-        body: `На вас успешно создали пропуск!` ,
+        body: `Было создано ${filteredPass.length} пропусков`,
         icon: 'assets/icons/icon-512x512.png'
       }
     };
@@ -39,9 +40,10 @@ router.post('/send-notification', async (req, res, next) => {
       webpush.sendNotification(s, JSON.stringify(notificationPayload));
     })
 
-    res.status(200).send(passes)
+    res.status(200).send({message: "Система уведомлений подключена"})
   } catch (error) {
     next(error)
   }
 })
 
+module.exports = router

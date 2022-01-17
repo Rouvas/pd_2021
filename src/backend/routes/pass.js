@@ -2,6 +2,7 @@
 const express = require('express'),
 router = express.Router()
 const axios = require('axios')
+const webpush = require('web-push');
 
 const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js')
 const {ErrorHandler} = require('../error')
@@ -31,7 +32,7 @@ router.get('/verify/:id', async (req, res, next) => {
 
 router.post('/', jwtCheck,  async (req, res, next) => {
   try {
-    let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type, date, endDate} = req.body
+    let {passport, goingTo, name, surname, lastname, allowedLocations, carPlate, type, date, endDate, subscription} = req.body
 
     let pass
     if (!endDate && date) endDate = date
@@ -67,6 +68,19 @@ router.post('/', jwtCheck,  async (req, res, next) => {
     }
 
     await pass.save()
+
+    
+
+    if (subscription) {
+      const notificationPayload = {
+        notification: {
+          title: 'PolyPacs',
+          body: `На вас успешно создали пропуск!`,
+          icon: 'assets/icons/icon-512x512.png'
+        }
+      };
+      webpush.sendNotification(subscription, JSON.stringify(notificationPayload));
+    }
 
     res.status(200).send(pass)
   } catch (error) {
