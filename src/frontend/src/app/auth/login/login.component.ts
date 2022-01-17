@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import { HttpService } from '../../services/http.service';
+import {LogincheckService} from '../../services/logincheck.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,9 @@ import { HttpService } from '../../services/http.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public srv: HttpService) { }
+  @Output() authState = false;
+
+  constructor(public srv: HttpService, private lc: LogincheckService) { }
 
   login = '';
   password = '';
@@ -16,6 +19,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onlogin() {
+    this.srv.login(this.login, this.password);
+  }
 
 
 }

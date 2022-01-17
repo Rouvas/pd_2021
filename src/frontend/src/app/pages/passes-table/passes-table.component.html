@@ -1,8 +1,5 @@
 <div class="container">
-
-  <h3 class="p-4 text-center">Управление и заказ пропусков <a class="btn btn-secondary" (click)="openModal2(template)">Заказать</a></h3>
-
-  <div class="pages">
+    <div class="pages">
     <tabset>
       <tab heading="Заказанные пропуски" id="tab1">
 
@@ -106,34 +103,23 @@
     </tabset>
   </div>
 
-
-  <ng-template #template>
+  <ng-template #openpass>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Создание пропуска</h4>
+      <h4 class="modal-title pull-left">Управление пропуском</h4>
       <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <app-new-pass></app-new-pass>
-    </div>
-  </ng-template>
-
-  <ng-template #openpass>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Управление пропуском</h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide(); this.openedpass = true;">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-     <h5 class="text-center" *ngIf="openedpass === true">Выберите действие</h5>
+      <h5 class="text-center" *ngIf="openedpass === true">Выберите действие</h5>
       <div class="d-grid gap-2 col-6 mx-auto" *ngIf="openedpass === true">
-        <button class="btn btn-secondary" type="button" (click)="openedpass = (openedpass === false) ? true : false; ">Открыть пропуск</button>
-        <button class="btn btn-warning" type="button" disabled>Удалить пропуск</button>
+        <button class="btn btn-secondary" type="button" (click)="openedpass = (openedpass === false) ? true : false;">Открыть пропуск</button>
+        <app-print-pass [print] = "true" [getpass]='getpass'></app-print-pass>
+        <button class="btn btn-warning" type="button">Отклонить пропуск</button>
+        <button class="btn btn-danger" type="button" disabled>Удалить пропуск</button>
       </div>
-      <app-modal-pass *ngIf="openedpass===false" [getpass]="getpass"></app-modal-pass>
+
+
+      <app-modal-pass *ngIf="openedpass===false" [getpass]='getpass'></app-modal-pass>
     </div>
   </ng-template>
-
-</div>

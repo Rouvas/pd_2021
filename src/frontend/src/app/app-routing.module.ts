@@ -9,6 +9,16 @@ import {AdminMainComponent} from './administrator/admin-main/admin-main.componen
 import {PrintPassComponent} from './pages/print-pass/print-pass.component';
 import {UsersComponent} from './administrator/pages/users/users.component';
 import {PassesComponent} from './administrator/pages/passes/passes.component';
+import {NotfoundComponent} from './pages/notfound/notfound.component';
+
+//Import guards
+
+import {WorkerGuard} from './guards/worker.guard';
+import {AdminGuard} from './guards/admin.guard';
+import {BureauGuard} from './guards/bureau.guard';
+import {TestFacilityComponent} from './testing/test-facility/test-facility.component';
+import {WelcomePageComponent} from './administrator/pages/welcome-page/welcome-page.component';
+import {PassesTableComponent} from './pages/passes-table/passes-table.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -20,14 +30,20 @@ const routes: Routes = [
 
   {path: 'print-pass', component: PrintPassComponent},
 
-  {path: 'departament', component: WorkerMainComponent},
+  {path: 'departament', component: WorkerMainComponent, canActivate: [WorkerGuard]},
 
-  {path: 'bureau', component: BureauMainComponent},
+  {path: 'bureau', component: BureauMainComponent, canActivate: [BureauGuard]},
 
-  {path: 'administrator' , component: AdminMainComponent, children: [
+  {path: 'administrator' , component: AdminMainComponent, canActivate: [AdminGuard], children: [
       {path: 'users', component: UsersComponent},
-      {path: 'passes', component: PassesComponent}
-    ]}
+      {path: 'passes', component: PassesComponent},
+      {path: '', component: WelcomePageComponent}
+    ]},
+
+  {path: 'test', component: TestFacilityComponent},
+  {path: 'passes', component: PassesTableComponent},
+
+  {path: '**', component: NotfoundComponent},
 ];
 
 @NgModule({

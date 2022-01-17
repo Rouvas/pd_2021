@@ -9,7 +9,9 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Меню</h4>
           <ul class="list-unstyled">
-            <li><a routerLink="login" class="text-white">Войти в аккаунт</a></li>
+            <li><a *ngIf="!lc.authState" routerLink="login" class="text-white">Войти в аккаунт</a></li>
+            <li><a *ngIf="lc.authState" class="text-white" (click)="backCabinet()">Личный кабинет</a></li>
+            <li><a *ngIf="lc.authState" routerLink="login" (click)="exitAccount()" class="text-white">Выйти из аккаунта</a></li>
             <li><a href="https://mospolytech.ru/" class="text-white">Сайт Московского Политеха</a></li>
           </ul>
         </div>

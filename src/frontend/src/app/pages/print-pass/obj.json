@@ -1,0 +1,752 @@
+[
+  {
+    "name": "class",
+    "label": "Класс",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Выберите класс",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 105,
+        "text": "A+"
+      },
+      {
+        "id": 101,
+        "text": "A"
+      },
+      {
+        "id": 102,
+        "text": "B+"
+      },
+      {
+        "id": 103,
+        "text": "B"
+      },
+      {
+        "id": 104,
+        "text": "B-"
+      },
+      {
+        "id": 106,
+        "text": "C"
+      }
+    ]
+  },
+  {
+    "name": "floor",
+    "label": "Этаж",
+    "type": 1,
+    "min": 0,
+    "max": 100,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Введите этаж",
+    "validationErrorText": "",
+    "options": null
+  },
+  {
+    "name": "number_of_floors",
+    "label": "Этажность",
+    "type": 1,
+    "min": 0,
+    "max": 100,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Введите этажность",
+    "validationErrorText": "",
+    "options": null
+  },
+  {
+    "name": "height",
+    "label": "Высота потолков",
+    "type": 1,
+    "min": 2,
+    "max": 50,
+    "measure": "м",
+    "mandatory": false,
+    "tipText": "Введите высоту потолков",
+    "validationErrorText": "",
+    "options": null
+  },
+  {
+    "name": "energy_kwatts",
+    "label": "Выделенная электрическая мощность",
+    "type": 1,
+    "min": 0,
+    "max": 2000,
+    "measure": "кВт",
+    "mandatory": false,
+    "tipText": "Введите выделенную электрическую мощность",
+    "validationErrorText": "",
+    "options": null
+  },
+  {
+    "name": "water_drain",
+    "label": "Вода и канализация",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 701,
+        "text": "есть"
+      },
+      {
+        "id": 702,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "conditioning",
+    "label": "Кондиционирование",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите наличие кондиционирования",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 801,
+        "text": "есть"
+      },
+      {
+        "id": 802,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "ventilation",
+    "label": "Вентиляция",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите наличие вентиляции",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 901,
+        "text": "есть"
+      },
+      {
+        "id": 902,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "heating",
+    "label": "Отопление",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите наличие отопления",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1001,
+        "text": "есть"
+      },
+      {
+        "id": 1002,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "furniture",
+    "label": "Наличие мебели",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1201,
+        "text": "есть"
+      },
+      {
+        "id": 1202,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "shop_window",
+    "label": "Витринное остекление",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1401,
+        "text": "есть"
+      },
+      {
+        "id": 1402,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "private_entrance",
+    "label": "Отдельный вход",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 501,
+        "text": "есть"
+      },
+      {
+        "id": 502,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "condition",
+    "label": "Состояние",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1101,
+        "text": "типовой ремонт"
+      },
+      {
+        "id": 1102,
+        "text": "дизайнерский ремонт"
+      },
+      {
+        "id": 1103,
+        "text": "под чистовую отделку"
+      },
+      {
+        "id": 1104,
+        "text": "требуется капитальный ремонт"
+      },
+      {
+        "id": 1105,
+        "text": "требуется косметический ремонт"
+      }
+    ]
+  },
+  {
+    "name": "railway_line",
+    "label": "Железнодорожная ветка",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 2007,
+        "text": "да"
+      },
+      {
+        "id": 2008,
+        "text": "нет"
+      }
+    ]
+  },
+  {
+    "name": "retailer_profile",
+    "label": "Торговые профили",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1302,
+        "text": "DIY"
+      },
+      {
+        "id": 1330,
+        "text": "аксессуары"
+      },
+      {
+        "id": 1334,
+        "text": "аптека"
+      },
+      {
+        "id": 1329,
+        "text": "бижутерия"
+      },
+      {
+        "id": 1303,
+        "text": "бытовая техника"
+      },
+      {
+        "id": 1305,
+        "text": "детские товары"
+      },
+      {
+        "id": 1310,
+        "text": "детский театр"
+      },
+      {
+        "id": 1336,
+        "text": "зоотовары"
+      },
+      {
+        "id": 1306,
+        "text": "кинотеатры"
+      },
+      {
+        "id": 1339,
+        "text": "книги, пресса"
+      },
+      {
+        "id": 1327,
+        "text": "кожгалантерея"
+      },
+      {
+        "id": 1307,
+        "text": "концертный зал"
+      },
+      {
+        "id": 1326,
+        "text": "косметика"
+      },
+      {
+        "id": 1314,
+        "text": "кофейни"
+      },
+      {
+        "id": 1312,
+        "text": "мебель"
+      },
+      {
+        "id": 1338,
+        "text": "мультимедиа"
+      },
+      {
+        "id": 1322,
+        "text": "нижнее белье"
+      },
+      {
+        "id": 1323,
+        "text": "обувь"
+      },
+      {
+        "id": 1321,
+        "text": "одежда верхняя, меховые изделия"
+      },
+      {
+        "id": 1320,
+        "text": "одежда для спорта и отдыха"
+      },
+      {
+        "id": 1317,
+        "text": "одежда женская"
+      },
+      {
+        "id": 1316,
+        "text": "одежда молодежная"
+      },
+      {
+        "id": 1318,
+        "text": "одежда мужская"
+      },
+      {
+        "id": 1319,
+        "text": "одежда смешанная"
+      },
+      {
+        "id": 1315,
+        "text": "операторы быстрого питания"
+      },
+      {
+        "id": 1335,
+        "text": "оптика"
+      },
+      {
+        "id": 1325,
+        "text": "парфюмерия"
+      },
+      {
+        "id": 1333,
+        "text": "подарки"
+      },
+      {
+        "id": 1301,
+        "text": "продовольственные товары"
+      },
+      {
+        "id": 1348,
+        "text": "прочие услуги"
+      },
+      {
+        "id": 1308,
+        "text": "развлекательная зона"
+      },
+      {
+        "id": 1309,
+        "text": "развлекательная зона для детей"
+      },
+      {
+        "id": 1313,
+        "text": "рестораны"
+      },
+      {
+        "id": 1324,
+        "text": "сотовая связь"
+      },
+      {
+        "id": 1304,
+        "text": "спорттовары"
+      },
+      {
+        "id": 1332,
+        "text": "сувениры"
+      },
+      {
+        "id": 1337,
+        "text": "товары для дома"
+      },
+      {
+        "id": 1346,
+        "text": "услуги бытовые: ателье, ремонт часов, ремонт обуви, металлоремонт"
+      },
+      {
+        "id": 1342,
+        "text": "услуги салона красоты"
+      },
+      {
+        "id": 1345,
+        "text": "услуги туристические"
+      },
+      {
+        "id": 1344,
+        "text": "услуги финансовые"
+      },
+      {
+        "id": 1347,
+        "text": "услуги фото"
+      },
+      {
+        "id": 1343,
+        "text": "услуги химчистки"
+      },
+      {
+        "id": 1311,
+        "text": "фитнес-центр"
+      },
+      {
+        "id": 1340,
+        "text": "цветы"
+      },
+      {
+        "id": 1341,
+        "text": "чай, кофе, табак"
+      },
+      {
+        "id": 1331,
+        "text": "часы"
+      },
+      {
+        "id": 1328,
+        "text": "ювелирные товары"
+      }
+    ]
+  },
+  {
+    "name": "retailer_segment",
+    "label": "Сегмент",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 2004,
+        "text": "премиум"
+      },
+      {
+        "id": 2005,
+        "text": "средний"
+      },
+      {
+        "id": 2006,
+        "text": "эконом"
+      }
+    ]
+  },
+  {
+    "name": "infrastructure",
+    "label": "Инфраструктура",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1501,
+        "text": "банкомат"
+      },
+      {
+        "id": 1502,
+        "text": "выставочный комплекс"
+      },
+      {
+        "id": 1503,
+        "text": "гостиница"
+      },
+      {
+        "id": 1504,
+        "text": "кафе"
+      },
+      {
+        "id": 1505,
+        "text": "конференц-зал"
+      },
+      {
+        "id": 1506,
+        "text": "медицинский центр"
+      },
+      {
+        "id": 1507,
+        "text": "минимаркет"
+      },
+      {
+        "id": 1508,
+        "text": "нотариальная контора"
+      },
+      {
+        "id": 1509,
+        "text": "отделение банка"
+      },
+      {
+        "id": 1510,
+        "text": "ресторан"
+      },
+      {
+        "id": 1511,
+        "text": "салон красоты"
+      },
+      {
+        "id": 1512,
+        "text": "складские помещения"
+      },
+      {
+        "id": 1513,
+        "text": "столовая"
+      },
+      {
+        "id": 1514,
+        "text": "супермаркет"
+      },
+      {
+        "id": 1515,
+        "text": "торговая зона"
+      },
+      {
+        "id": 1516,
+        "text": "фитнес-центр"
+      },
+      {
+        "id": 1517,
+        "text": "центральный ресепшн"
+      }
+    ]
+  },
+  {
+    "name": "floor_material",
+    "label": "Материал пола",
+    "type": 2,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите материал пола",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1604,
+        "text": "асфальт"
+      },
+      {
+        "id": 1602,
+        "text": "бетон"
+      },
+      {
+        "id": 1608,
+        "text": "дерево"
+      },
+      {
+        "id": 1607,
+        "text": "железобетонный"
+      },
+      {
+        "id": 1609,
+        "text": "ламинат"
+      },
+      {
+        "id": 1603,
+        "text": "линолеум"
+      },
+      {
+        "id": 1606,
+        "text": "наливной"
+      },
+      {
+        "id": 1605,
+        "text": "плитка"
+      },
+      {
+        "id": 1601,
+        "text": "полимерный"
+      }
+    ]
+  },
+  {
+    "name": "lift",
+    "label": "Лифт",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите наличие лифтов",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1701,
+        "text": "грузовой"
+      },
+      {
+        "id": 1703,
+        "text": "пассажирский"
+      },
+      {
+        "id": 1702,
+        "text": "тельфер"
+      }
+    ]
+  },
+  {
+    "name": "crane",
+    "label": "Кран",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите крановое оборудование",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1803,
+        "text": "ж/д кран"
+      },
+      {
+        "id": 1804,
+        "text": "козловой кран"
+      },
+      {
+        "id": 1802,
+        "text": "кран-балка"
+      },
+      {
+        "id": 1801,
+        "text": "мостовой кран"
+      }
+    ]
+  },
+  {
+    "name": "gate",
+    "label": "Ворота",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Укажите наличие ворот",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 1902,
+        "text": "докового типа"
+      },
+      {
+        "id": 1903,
+        "text": "на нулевой отметке"
+      },
+      {
+        "id": 1901,
+        "text": "на пандусе"
+      }
+    ]
+  },
+  {
+    "name": "additional_service",
+    "label": "Дополнительно",
+    "type": 3,
+    "min": 0,
+    "max": 0,
+    "measure": "",
+    "mandatory": false,
+    "tipText": "Выберите дополнительные услуги",
+    "validationErrorText": "",
+    "options": [
+      {
+        "id": 2001,
+        "text": "ответственное хранение"
+      },
+      {
+        "id": 2002,
+        "text": "таможня"
+      },
+      {
+        "id": 2003,
+        "text": "транспортные услуги"
+      }
+    ]
+  }
+]

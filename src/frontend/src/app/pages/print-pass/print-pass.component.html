@@ -1,37 +1,34 @@
 <div class="container" *ngIf="type === 0">
-  <h3 class="text-center p-3">Печать пропуска №878787</h3>
+  <div class="print-brdcar">
+    <div class="brd">
+      <h4 class="text-center">Московский Политех</h4>
+      <p class="text-center">Пропуск на территорию университета</p>
+      <ul>
+        <li>Уникальный номер пропуска: {{pass.uniqueId}}</li>
+      </ul>
 
-  <div class="brd">
-  <h4 class="text-center">Московский Политех</h4>
-  <p class="text-center">Пропуск на территорию университета</p>
-    <ul>
-      <li>Уникальный номер пропуска: 878787</li>
-    </ul>
+      <ul>
+        <li>Фамилия: {{pass.surname}}</li>
+        <li>Имя: {{pass.name}}</li>
+        <li>Отчество: {{pass.lastname}}</li>
+        <li>Серия и номер паспорта: {{pass.passport}}</li>
+      </ul>
 
-    <ul>
-      <li>Фамилия: Иванов</li>
-      <li>Имя: Григорий</li>
-      <li>Отчество: Александрович</li>
-      <li>Серия и номер паспорта: 45 25 115577</li>
-    </ul>
+      <ul>
+        <li>Следует в аудиторию: {{pass.goingTo}}</li>
+      </ul>
 
-    <ul>
-      <li>Следует в аудиторию: Н516</li>
-    </ul>
+      <ul>
+        <li>Действует с: {{pass.date | date: 'dd.MM.YYYY'}}</li>
+        <li>Действует до: {{pass.endDate | date: 'dd.MM.YYYY'}}</li>
+      </ul>
 
-    <ul>
-      <li>Действует с: 07.12.2021</li>
-      <li>Действует до: 07.12.2021</li>
-    </ul>
-
-    <ul>
-      <li>Выдан: Деканат по работе с мигрантами</li>
-    </ul>
-    <p class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>
+<!--      <ul>-->
+<!--        <li>Выдан: Деканат по работе с мигрантами</li>-->
+<!--      </ul>-->
+<!--      <p class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>-->
+    </div>
   </div>
-
-
-  <p class="text-center"> Для печати используйте средства браузера (CTRL + P)</p>
 </div>
 
 
@@ -40,25 +37,30 @@
     <div class="brdcar">
       <h4 class="text-center" style="font-size: 400%">Московский Политех</h4>
       <p class="text-center"style="font-size: 150%">Пропуск автомобиля на территорию университета</p>
-      <p class="text-center"style="font-size: 150%">Разрешенные локации: <b style="border: 4px double black; margin-left: 2px;">БС</b> <b style="border: 4px double black; margin-left: 2px;">ПК</b></p>
+      <p class="text-center"style="font-size: 150%">Разрешенные локации:
+        <b  *ngIf="avalibleLocs.bs === 1" style="border: 4px double black; margin-left: 2px;">БС</b>
+        <b *ngIf="avalibleLocs.pk === 1" style="border: 4px double black; margin-left: 2px;">ПК</b>
+        <b *ngIf="avalibleLocs.pr === 1" style="border: 4px double black; margin-left: 2px;">ПР</b>
+        <b *ngIf="avalibleLocs.av === 1" style="border: 4px double black; margin-left: 2px;">АВ</b>
+      </p>
 
-      <h1 class="text-center">М573ЕХ799</h1>
-      <p class="text-center" style="font-size: 150%">Уникальный номер пропуска: 878787</p>
+      <h1 class="text-center">{{pass.carPlate}}</h1>
+      <p class="text-center" style="font-size: 150%">Уникальный номер пропуска: {{pass.uniqueId}}</p>
 
       <div class="row">
         <div class="col">
           <ul>
-            <li>Действует с: 07.12.2021</li>
-            <li>Действует до: 07.12.2021</li>
+            <li>Действует с: {{pass.date | date: 'dd.MM.YYYY'}}</li>
+            <li>Действует до: {{pass.endDate | date: 'dd.MM.YYYY'}}</li>
           </ul>
 
-          <ul>
-            <li>Выдан: Деканат по работе с мигрантами</li>
-          </ul>
+<!--          <ul>-->
+<!--            <li>Выдан: Деканат по работе с мигрантами</li>-->
+<!--          </ul>-->
         </div>
 
         <div class="col right">
-          <qrcode [qrdata]="'http://localhost/check-pass?83289759'" [width]="128" [errorCorrectionLevel]="'M'" style="float: right;"></qrcode>
+          <qrcode [qrdata]="'http://localhost/verify-pass/id/' + pass._id" [width]="128" [errorCorrectionLevel]="'M'" style="float: right;"></qrcode>
         </div>
       </div>
 

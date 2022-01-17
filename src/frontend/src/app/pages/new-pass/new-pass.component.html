@@ -1,57 +1,52 @@
 <div class="container justify-content-center" *ngIf="type === 0">
   <form>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Фамилия</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp">
+      <label for="inputSurname" class="form-label">Фамилия</label>
+      <input type="text" class="form-control" id="inputSurname" [(ngModel)]="pass.surname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail2" class="form-label">Имя</label>
-      <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="textHelp2">
+      <label for="inputName" class="form-label">Имя</label>
+      <input type="text" class="form-control" id="inputName" [(ngModel)]="pass.name" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp2">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail3" class="form-label">Отчество</label>
-      <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="textHelp3">
+      <label for="inputLastname" class="form-label">Отчество</label>
+      <input type="text" class="form-control" id="inputLastname" [(ngModel)]="pass.lastname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp3">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail4" class="form-label">Серия и номер паспорта</label>
-      <input type="text" class="form-control" id="exampleInputEmail4" aria-describedby="textHelp4">
-      <div id="textHelp4" class="form-text">Если не вводится, оставить пустым.</div>
+      <label for="inputPassport" class="form-label">Серия и номер паспорта</label>
+      <input type="text" class="form-control" id="inputPassport" [(ngModel)]="pass.passport" [ngModelOptions]="{standalone: true}" aria-describedby="passportHelp">
+      <div id="passportHelp" class="form-text">Если не вводится, оставить пустым.</div>
     </div>
 
     <hr>
 
     <div class="mb-3">
-      <label for="exampleInputEmail5" class="form-label">Следует в аудиторию</label>
-      <input type="text" class="form-control" id="exampleInputEmail5" aria-describedby="textHelp5">
+      <label for="inputGoingTo" class="form-label">Следует в аудиторию</label>
+      <input type="text" class="form-control" id="inputGoingTo" [(ngModel)]="pass.goingTo" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp5">
     </div>
 
     <hr>
 
     <div class="mb-3">
-      <label for="exampleInputEmail6" class="form-label">Дата начала действия</label>
-      <input type="text" class="form-control" id="exampleInputEmail6" aria-describedby="textHelp6">
+      <label for="inputDateFrom" class="form-label">Дата начала действия</label>
+      <input type="text" class="form-control" id="inputDateFrom" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', adaptivePosition: true }" [ngModelOptions]="{standalone: true}" [(ngModel)]="pass.date">
     </div>
     <div class="mb-3">
-      <label for="exampleInputEmail7" class="form-label">Дата окончания действия</label>
-      <input type="text" class="form-control" id="exampleInputEmail7" aria-describedby="textHelp7">
+      <label for="inputDateTo" class="form-label">Дата окончания действия</label>
+      <input type="text" class="form-control" id="inputDateTo" bsDatepicker [(ngModel)]="pass.endDate" [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', adaptivePosition: true }" [ngModelOptions]="{standalone: true}">
     </div>
 
     <hr>
 
-    <div class="mb-3">
-      <label for="exampleInputEmail8" class="form-label">Примечание</label>
-      <input type="text" class="form-control" id="exampleInputEmail8" aria-describedby="textHelp7">
-    </div>
+<!--    <div class="mb-3">-->
+<!--      <label for="exampleInputEmail8" class="form-label">Примечание</label>-->
+<!--      <input type="text" class="form-control" id="exampleInputEmail8" aria-describedby="textHelp7">-->
+<!--    </div>-->
 
-
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="onCreatePass()">Создать пропуск</button>
   </form>
 </div>
 
@@ -59,51 +54,51 @@
 <div class="container justify-content-center" *ngIf="type === 1">
   <form>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Фамилия</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp">
+      <label for="carinputSurname" class="form-label">Фамилия</label>
+      <input type="text" class="form-control" id="carinputSurname" [(ngModel)]="pass.surname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail2" class="form-label">Имя</label>
-      <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="textHelp2">
+      <label for="carinputName" class="form-label">Имя</label>
+      <input type="text" class="form-control" id="carinputName" [(ngModel)]="pass.name" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp2">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail3" class="form-label">Отчество</label>
-      <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="textHelp3">
+      <label for="carinputLastname" class="form-label">Отчество</label>
+      <input type="text" class="form-control" id="carinputLastname" [(ngModel)]="pass.lastname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp3">
     </div>
 
     <div class="mb-3">
-      <label for="exampleInputEmail4" class="form-label">Серия и номер паспорта</label>
-      <input type="text" class="form-control" id="exampleInputEmail4" aria-describedby="textHelp4">
+      <label for="carinputPassport" class="form-label">Серия и номер паспорта</label>
+      <input type="text" class="form-control" id="carinputPassport" [(ngModel)]="pass.passport" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp4">
       <div id="textHelp4" class="form-text">Если не вводится, оставить пустым.</div>
     </div>
 
     <hr>
 
     <div class="mb-3">
-      <label for="exampleInputEmail5" class="form-label">Номер автомобиля</label>
-      <input type="text" class="form-control" id="exampleInputEmail5" aria-describedby="textHelp5">
+      <label for="carinputCarPlate" class="form-label">Номер автомобиля</label>
+      <input type="text" class="form-control" id="carinputCarPlate" [(ngModel)]="pass.carPlate" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp5">
     </div>
 
     <div class="mb-3">
       <label for="inlineCheckbox1" class="form-label">Разрешенные локации</label>
       <br>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">БС</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" (change)="allowedLocations.bs = !allowedLocations.bs">
+        <label class="form-check-label" for="inlineCheckbox1" >БС</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" (change)="allowedLocations.pk = !allowedLocations.pk">
         <label class="form-check-label" for="inlineCheckbox2">ПК</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-        <label class="form-check-label" for="inlineCheckbox3">ПР</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" (change)="allowedLocations.pr = !allowedLocations.pr">
+        <label class="form-check-label" for="inlineCheckbox3" >ПР</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option3">
-        <label class="form-check-label" for="inlineCheckbox4">АВ</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option3" (change)="allowedLocations.av = !allowedLocations.av">
+        <label class="form-check-label" for="inlineCheckbox4" >АВ</label>
       </div>
 
     </div>
@@ -111,26 +106,26 @@
     <hr>
 
     <div class="mb-3">
-      <label for="exampleInputEmail6" class="form-label">Дата начала действия</label>
-      <input type="text" class="form-control" id="exampleInputEmail6" aria-describedby="textHelp6">
+      <label for="carinputDateFrom" class="form-label">Дата начала действия</label>
+      <input type="text" class="form-control" id="carinputDateFrom" [readonly]="true" bsDatepicker [(ngModel)]="pass.date" [ngModelOptions]="{standalone: true}" [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', adaptivePosition: true }">
+      <div class="form-text">Нажмите на поле ввода для выбора даты.</div>
     </div>
     <div class="mb-3">
-      <label for="exampleInputEmail7" class="form-label">Дата окончания действия</label>
-      <input type="text" class="form-control" id="exampleInputEmail7" aria-describedby="textHelp7">
+      <label for="carinputDateTo" class="form-label">Дата окончания действия</label>
+      <input type="text" class="form-control" id="carinputDateTo" [readonly]="true" bsDatepicker [(ngModel)]="pass.endDate" [ngModelOptions]="{standalone: true}" [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', adaptivePosition: true }">
+      <div class="form-text">Нажмите на поле ввода для выбора даты.</div>
+      <div class="form-text">Если дата не указывается, выдаётся на один день.</div>
     </div>
 
     <hr>
 
-    <div class="mb-3">
-      <label for="exampleInputEmail8" class="form-label">Примечание</label>
-      <input type="text" class="form-control" id="exampleInputEmail8" aria-describedby="textHelp7">
-    </div>
+<!--    <div class="mb-3">-->
+<!--      <label for="exampleInputEmail8" class="form-label">Примечание</label>-->
+<!--      <input type="text" class="form-control" id="exampleInputEmail8" aria-describedby="textHelp7">-->
+<!--    </div>-->
 
-
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-secondary" (click)="onCreatePass();">Создать пропуск</button>
   </form>
 </div>
+
+

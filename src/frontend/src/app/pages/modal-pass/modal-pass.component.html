@@ -25,7 +25,8 @@
     <ul>
       <li>Выдан: Деканат по работе с мигрантами</li>
     </ul>
-    <p class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>
+    <p *ngIf="statusCondition === 1" class="text-center">Статус пропуска: <b style="color: green;">Действителен</b></p>
+    <p *ngIf="statusCondition === 0" class="text-center">Статус пропуска: <b style="color: red;">Недействителен</b></p>
   </div>
 
 

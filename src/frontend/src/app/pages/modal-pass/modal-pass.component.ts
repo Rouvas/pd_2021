@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {HttpService} from '../../services/http.service';
+import {ToastrService} from 'ngx-toastr';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-modal-pass',
@@ -26,7 +29,8 @@ export class ModalPassComponent implements OnInit {
     pr: 0
   };
 
-  constructor(private srv: HttpService) { }
+  constructor(private srv: HttpService, private toastr: ToastrService,
+              private modalService: BsModalService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     console.log(this.getpass);
@@ -59,13 +63,19 @@ export class ModalPassComponent implements OnInit {
       if (getDate.year <= endDate.year) {
         if (getDate.month <= endDate.month) {
           if (endDate.day >= getDate.day) {
-            this.statusCondition = 1;
+            if (res.status === '1') {
+              this.statusCondition = 1;
+            }
           }
         }
       }
-
-
-    });
+      this.spinner.hide();
+    }).catch(
+      err => {
+        this.toastr.warning('Возникла ошибка! ' + err.error.message, 'Ошибка №' + err.status);
+        this.modalService.hide();
+        setInterval(res => this.spinner.hide(), 1000);
+      }
+      );
   }
-
 }

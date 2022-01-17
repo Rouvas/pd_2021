@@ -29,7 +29,15 @@ import { UsersComponent } from './administrator/pages/users/users.component';
 import { PassesComponent } from './administrator/pages/passes/passes.component';
 import {FormsModule} from '@angular/forms';
 
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { TestFacilityComponent } from './testing/test-facility/test-facility.component';
+import {PushNotificationsModule} from 'ng-push';
+import { ToastrModule } from 'ngx-toastr';
+import { WelcomePageComponent } from './administrator/pages/welcome-page/welcome-page.component';
+import { PassesTableComponent } from './pages/passes-table/passes-table.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NewPassComponent,
     ModalPassComponent,
     UsersComponent,
-    PassesComponent
+    PassesComponent,
+    NotfoundComponent,
+    TestFacilityComponent,
+    WelcomePageComponent,
+    PassesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +68,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    ToastrModule.forRoot(),
     QRCodeModule,
     FormsModule,
     HttpClientModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {HttpService} from './services/http.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) {}
+  constructor(private spinner: NgxSpinnerService, private srv: HttpService) {}
 
   title = 'PolyPACS';
 
@@ -24,6 +25,9 @@ export class AppComponent implements OnInit {
 
   checkAccount() {
     console.log(localStorage.getItem('accessToken'));
+  }
+  getAccount() {
+    this.srv.getUser(localStorage.getItem('accessToken'));
   }
 }
 

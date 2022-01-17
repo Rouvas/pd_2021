@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { HttpService } from '../../services/http.service';
 import { ActivatedRoute} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-verify-page',
@@ -20,7 +21,8 @@ export class VerifyPageComponent implements OnInit {
   };
   passinfo = {};
 
-  constructor(private modalService: BsModalService, public srv: HttpService, private activateRoute: ActivatedRoute) {
+  constructor(private modalService: BsModalService, public srv: HttpService,
+              private activateRoute: ActivatedRoute, private spinner: NgxSpinnerService) {
     this.id = activateRoute.snapshot.params.id;
   }
 
@@ -41,6 +43,6 @@ export class VerifyPageComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   openModal(template: TemplateRef<any>) {
-      this.modalRef = this.modalService.show(template);
+      this.spinner.show().then(res => this.modalRef = this.modalService.show(template));
   }
 }
