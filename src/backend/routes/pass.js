@@ -8,6 +8,8 @@ const {workerCheck, bureauCheck, jwtCheck, adminCheck } = require('../common.js'
 const {ErrorHandler} = require('../error')
 
 const Pass = require('../models/pass')
+const Subscription = require('../models/subscription')
+
 
 
 
