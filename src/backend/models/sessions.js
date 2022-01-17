@@ -25,7 +25,7 @@ const SessionSchema = new mongoose.Schema({
   },
 })
 
-SessionSchema.plugin(uniqueValidator)
+// SessionSchema.plugin(uniqueValidator)
 
 const Session = mongoose.model('Session', SessionSchema, 'sessions')
 
