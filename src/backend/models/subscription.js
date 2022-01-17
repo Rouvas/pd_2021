@@ -12,11 +12,11 @@ const SubscriptionSchema = new mongoose.Schema({
   keys: {
     p256dh: {
       type: String,
-      required: true
+      required: false
     },
     auth: {
       type: String,
-      required: true
+      required: false
     }
   }
 })
