@@ -69,19 +69,20 @@ router.post('/', jwtCheck,  async (req, res, next) => {
 
     await pass.save()
 
-    
+    const notificationPayload = {
+      notification: {
+        title: 'PolyPacs',
+        body: `Были созданы новые пропуска!`,
+        icon: 'assets/icons/icon-512x512.png'
+      }
+    };
 
-    if (subscription) {
-      const notificationPayload = {
-        notification: {
-          title: 'PolyPacs',
-          body: `На вас успешно создали пропуск!`,
-          icon: 'assets/icons/icon-512x512.png'
-        }
-      };
-      webpush.sendNotification(subscription, JSON.stringify(notificationPayload));
-    }
+    let subs = await Subscription.find()
 
+    subs.forEach(s => {
+      webpush.sendNotification(s, JSON.stringify(notificationPayload));
+    })
+  
     res.status(200).send(pass)
   } catch (error) {
     next(error)
