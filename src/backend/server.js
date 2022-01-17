@@ -53,7 +53,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
 app.use('/api/pass', passRoutes)
 app.use('/api/department', jwtCheck, departmentRoutes)
-app.use('/push', pushRoutes)
+app.use('/api/push', pushRoutes)
 app.use((err, req, res, next) => {
   handleError(err, res)
 })
