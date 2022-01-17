@@ -12,7 +12,7 @@ router.post('/subscription', async (req, res, next) => {
   try {
     let newSub = req.body
     let createdSub = await Subscription.create(newSub)
-    res.status(200).send(createdSub)
+    res.status(200).send({message: "Подписка создана", subObject: createdSub})
   } catch (error) {
     next(error)
   }
