@@ -23,8 +23,8 @@ const { error } = require('console')
 const { adminCheck, jwtCheck, hackCheck, bureauCheck, workerCheck } = require('./common.js')
 
 // web-push-keys
-const PUBLIC_VAPID = 'BNOJyTgwrEwK9lbetRcougxkRgLpPs1DX0YCfA5ZzXu4z9p_Et5EnvMja7MGfCqyFCY4FnFnJVICM4bMUcnrxWg';
-const PRIVATE_VAPID = '_kRzHiscHBIGftfA7IehH9EA3RvBl8SBYhXBAMz6GrI';
+const PUBLIC_VAPID = 'BLFC0iJNYgCAp53NHz_9ArVMpohkABNff6V96lfHqQ2irypqI8xW5CicrfKLRyf_iPVXda4XtWU2mj77T0TAVns';
+const PRIVATE_VAPID = '2X9WZucQngPMMN61K9mlSh9R_7UCq-6si-T7PufRYXA';
 
 
 // connect to db
