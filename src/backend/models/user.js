@@ -61,9 +61,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   department: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Department',
-    required: true
+    required: false,
+    default: 'Не указано'
   }
   
 })

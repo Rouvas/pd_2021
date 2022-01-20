@@ -1,6 +1,7 @@
 const express = require('express'),
 router = express.Router()
 
+const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
 const {ErrorHandler} = require('../error')

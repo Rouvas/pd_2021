@@ -38,6 +38,7 @@ mongoose
     connectTimeoutMS: 10000,
   })
   .then(() => console.log('Connected to MongoDB...'))
+    .then(() => console.log('MongoDB database connected!'))
 .catch((err) => console.error('Could not connect to MongoDB...', error, process.env.MONGO_CREDS))
 
 // middlewares
@@ -59,15 +60,26 @@ app.use((err, req, res, next) => {
 })
 
 app.route('/').get((req, res) => {
-  res.status(200).send('Rouvas gay')
+  res.status(200).send('Working successful. Version ' + ver)
 })
 
 
 const port = process.env.PORT || 3500
 
 // const httpServer = http.createServer(app)
-app.listen(port, () => {
-  console.log('HTTP Server is running on port: ' + port)
+// app.listen(port, res => {
+//   console.log('PolyPACS backend ver. 0.9 RC1')
+//   console.log('Developer for Moscow Polytech')
+//   console.log('Backend is running on port: ' + port)
+//   console.log('Backend is running on ip: ' + res)
+// })
+
+const ver = '0.9 RC1';
+
+app.listen(port, '0.0.0.0' ,() => {
+    console.log('PolyPACS backend' + ver)
+    console.log('Developed for Moscow Polytech')
+    console.log('Backend is running on port: ' + port)
 })
 
 // 

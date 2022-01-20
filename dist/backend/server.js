@@ -59,7 +59,7 @@ app.use((err, req, res, next) => {
 })
 
 app.route('/').get((req, res) => {
-  res.status(200).send('Rouvas gay')
+  res.status(200).send('Backend working successful!')
 })
 
 
