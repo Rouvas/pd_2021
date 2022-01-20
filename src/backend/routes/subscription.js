@@ -30,8 +30,8 @@ router.post('/send-notification', async (req, res, next) => {
     
     const notificationPayload = {
       notification: {
-        title: 'PolyPacs',
-        body: `Было создано ${filteredPass.length} пропусков`,
+        title: 'PolyPACS',
+        body: `В работе ${filteredPass.length} пропусков`,
         icon: 'assets/icons/icon-512x512.png'
       }
     };
