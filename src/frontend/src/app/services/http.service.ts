@@ -15,7 +15,7 @@ import {BsModalRef} from 'ngx-bootstrap/modal';
 })
 export class HttpService {
 
-  uri = 'http://192.168.31.146:3000/api/';
+  uri = 'http://localhost:3000/api/';
   token;
 
   passes;
@@ -121,7 +121,7 @@ export class HttpService {
   kickUser(){
     localStorage.removeItem('accessToken');
     this.router.navigate(['/']).then(() => {
-      this.toastr.warning('Перезайдите в аккаунт', 'Возникла ошибка доступа!')
+      this.toastr.warning('Перезайдите в аккаунт', 'Возникла ошибка доступа!');
     });
   }
 
@@ -159,6 +159,27 @@ export class HttpService {
       .pipe(
         map( (data: any) => data)
       );
+  }
+
+  setPassStatus(id, status) {
+    const tokenData = localStorage.getItem('accessToken');
+    return this.http.patch(this.uri + 'pass/change-status/' + id, status, {headers: {Authorization: 'Bearer ' + tokenData}})
+      .toPromise()
+      .then(
+        () =>
+        this.toastr.success('Статус успешно сменен на "Действителен"', 'Смена статуса пропуска')
+           )
+      .catch(
+        err => {
+          if (err.status === 403) {
+            this.toastr.warning('Необходимо перезайти в аккаунт', 'Ошибка №403');
+            this.router.navigate(['login']);
+          } else {
+            this.toastr.warning('Проверьте введенные данные', 'Ошибка №' + err.status);
+          }
+
+          this.lc.typeCheck = 0;
+        });
   }
 
   checkPass(pass) {
