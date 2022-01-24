@@ -20,6 +20,7 @@ export class PassesTableComponent implements OnInit {
   getpass = {
     uniqueId: '',
     surname: '',
+    status: '',
   };
 
   constructor(private modalService: BsModalService, public srv: HttpService,
@@ -29,9 +30,10 @@ export class PassesTableComponent implements OnInit {
     this.srv.getPasses();
   }
 
-  openModal(template: TemplateRef<any>, surname, uniqueId): void {
+  openModal(template: TemplateRef<any>, surname, uniqueId, status): void {
     this.getpass.surname = surname;
     this.getpass.uniqueId = uniqueId;
+    this.getpass.status = status;
     this.modalRef = this.modalService.show(template);
     // tslint:disable-next-line:variable-name
     let _combine;

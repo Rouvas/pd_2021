@@ -27,7 +27,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>
@@ -61,7 +61,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>
@@ -93,7 +93,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>
@@ -115,8 +115,9 @@
       <div class="d-grid gap-2 col-6 mx-auto" *ngIf="openedpass === true">
         <button class="btn btn-secondary" type="button" (click)="openedpass = (openedpass === false) ? true : false;">Открыть пропуск</button>
         <app-print-pass [print] = "true" [getpass]='getpass'></app-print-pass>
-        <button class="btn btn-warning" type="button">Отклонить пропуск</button>
-        <button class="btn btn-danger" type="button" disabled>Удалить пропуск</button>
+        <button *ngIf="getpass.status === '0'" class="btn btn-success" type="button" (click)="srv.setPassStatus(getpass.uniqueId, '1')">Разрешить пропуск</button>
+        <button *ngIf="getpass.status === '0' || getpass.status === '1'" class="btn btn-warning" type="button" (click)="srv.setPassStatus(getpass.uniqueId, '2')">Отклонить пропуск</button>
+        <button class="btn btn-danger" type="button" disabled style="display: none">Удалить пропуск</button>
       </div>
 
 
