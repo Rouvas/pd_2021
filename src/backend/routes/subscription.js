@@ -32,12 +32,14 @@ router.post('/send-notification', async (req, res, next) => {
       notification: {
         title: 'PolyPACS',
         body: `В работе ${filteredPass.length} пропусков`,
-        icon: 'assets/icons/icon-512x512.png'
+        icon: 'assets/icons/icon.png'
       }
     };
 
-    subs.forEach(s => {
-      webpush.sendNotification(s, JSON.stringify(notificationPayload));
+    subs.forEach(sub => {
+      webpush.sendNotification(sub, JSON.stringify(notificationPayload)).catch(
+          err => console.log(err)
+      )
     })
 
     res.status(200).send({message: "Система уведомлений подключена"})

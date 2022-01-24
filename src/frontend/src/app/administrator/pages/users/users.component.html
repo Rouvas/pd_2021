@@ -18,12 +18,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Иванов Григорий Александрович</td>
-              <td>Сотрудник</td>
-              <td>Отдел по работе с мигрантами</td>
-              <td style="text-align: center" (click)="openModal(openpass)"><a class="btn">&#9881;</a></td>
+            <tr *ngFor="let user of users; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{user.surname}} {{user.name}} {{user.lastname}}</td>
+              <td *ngIf="user.role === 'worker'">Сотрудник</td>
+              <td *ngIf="user.role === 'bureau'">Бюро пропусков</td>
+              <td *ngIf="user.role === 'admin'">Администратор</td>
+              <td>{{user.department}}</td>
+              <td style="text-align: center" (click)="openUserModal(user,openuser)"><a class="btn">&#9881;</a></td>
             </tr>
             </tbody>
           </table>
@@ -45,12 +47,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Иванов Григорий Александрович</td>
-              <td>Сотрудник</td>
-              <td>Отдел по работе с мигрантами</td>
-              <td style="text-align: center" (click)="openModal(openpass)"><a class="btn">&#9881;</a></td>
+            <tr *ngFor="let user of users">
+              <th scope="row">2</th>
+              <td>{{user.surname}} {{user.name}} {{user.lastname}}</td>
+              <td>{{user.type}}</td>
+              <td>{{user.department}}</td>
+              <td style="text-align: center" (click)="openUserModal(user, openuser)"><a class="btn">&#9881;</a></td>
             </tr>
             </tbody>
           </table>
@@ -62,46 +64,62 @@
 
   <ng-template #createperson>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Создание пропуска</h4>
+      <h4 class="modal-title pull-left">Создание пользователя</h4>
       <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <app-new-pass [type] = "0"></app-new-pass>
+      <app-new-user></app-new-user>
     </div>
   </ng-template>
 
-  <ng-template #createcar>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Создание пропуска</h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <app-new-pass [type] = "1"></app-new-pass>
-    </div>
-  </ng-template>
+<!--  <ng-template #createcar>-->
+<!--    <div class="modal-header">-->
+<!--      <h4 class="modal-title pull-left">Создание пользователя</h4>-->
+<!--      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">-->
+<!--        <span aria-hidden="true" class="visually-hidden">&times;</span>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="modal-body">-->
+<!--      <app-new-pass></app-new-pass>-->
+<!--    </div>-->
+<!--  </ng-template>-->
 
-  <ng-template #openpass>
+  <ng-template #openuser>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Управление пропуском</h4>
+      <h4 class="modal-title pull-left">Управление пользователем</h4>
       <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <h5 class="text-center" *ngIf="openedpass === true">Выберите действие</h5>
-      <div class="d-grid gap-2 col-6 mx-auto" *ngIf="openedpass === true">
-        <button class="btn btn-secondary" type="button" (click)="openedpass = (openedpass === false) ? true : false;">Открыть пропуск</button>
-        <app-print-pass [print] = "true"></app-print-pass>
-        <button class="btn btn-warning" type="button">Отклонить пропуск</button>
-        <button class="btn btn-danger" type="button">Удалить пропуск</button>
+      <div class="container container-modal">
+        <div class="print-user">
+
+          <p>Карточка пользователя</p>
+
+          <ul>
+            <li>Ф.И.О: {{user.surname}} {{user.name}} {{user.lastname}}</li>
+            <li *ngIf="user.role === 'worker'">Тип пользователя: Сотрудник</li>
+            <li *ngIf="user.role === 'bureau'">Тип пользователя: Бюро пропусков</li>
+            <li *ngIf="user.role === 'admin'">Тип пользователя: Администратор</li>
+            <li>Отдел: {{user.department != null ? user.department : 'Не указано'}}</li>
+          </ul>
+
+          <hr>
+          <ul>
+            <li>Логин: {{user.login}}</li>
+            <!--          <li>Пароль: {{user.password}}</li>-->
+          </ul>
+
+        </div>
+<!--        <h5 class="text-center" *ngIf="openedpass === true">Выберите действие</h5>-->
+
       </div>
-
-
-      <app-modal-pass *ngIf="openedpass===false"></app-modal-pass>
+      <div class="d-grid gap-2 col-6 mx-auto" *ngIf="openedpass === true">
+        <button class="btn btn-danger" type="button">Удалить аккаунт</button>
+      </div>
     </div>
   </ng-template>
 

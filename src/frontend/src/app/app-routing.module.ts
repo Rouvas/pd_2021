@@ -19,6 +19,7 @@ import {BureauGuard} from './guards/bureau.guard';
 import {TestFacilityComponent} from './testing/test-facility/test-facility.component';
 import {WelcomePageComponent} from './administrator/pages/welcome-page/welcome-page.component';
 import {PassesTableComponent} from './pages/passes-table/passes-table.component';
+import {WebpushesComponent} from './administrator/pages/webpushes/webpushes.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'administrator' , component: AdminMainComponent, canActivate: [AdminGuard], children: [
       {path: 'users', component: UsersComponent},
       {path: 'passes', component: PassesComponent},
+      {path: 'web-push', component: WebpushesComponent},
       {path: '', component: WelcomePageComponent}
     ]},
 

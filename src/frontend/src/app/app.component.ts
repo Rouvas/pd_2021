@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {HttpService} from './services/http.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import {HttpService} from './services/http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService, private srv: HttpService) {}
+  constructor(private titleService: Title, private spinner: NgxSpinnerService, private srv: HttpService) {}
 
   title = 'PolyPACS';
 
@@ -17,17 +18,19 @@ export class AppComponent implements OnInit {
     /** spinner starts on init */
     this.spinner.show();
 
+    this.titleService.setTitle('PolyPACS ver.0.9 RC1');
+
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 2000);
+    }, 5000);
   }
 
-  checkAccount() {
-    console.log(localStorage.getItem('accessToken'));
-  }
-  getAccount() {
-    this.srv.getUser(localStorage.getItem('accessToken'));
-  }
+  // checkAccount() {
+  //   console.log(localStorage.getItem('accessToken'));
+  // }
+  // getAccount() {
+  //   this.srv.getUser(localStorage.getItem('accessToken'));
+  // }
 }
 

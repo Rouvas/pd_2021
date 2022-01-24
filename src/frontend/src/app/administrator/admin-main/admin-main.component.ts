@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMainComponent implements OnInit {
 
+  subEnabled = 'disabled';
+
   constructor() { }
 
   ngOnInit(): void {
+    this.subEnabled = localStorage.getItem('web-push');
   }
+
 
 }

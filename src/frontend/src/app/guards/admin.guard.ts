@@ -17,16 +17,23 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const obj = jwt_decode(localStorage.getItem('accessToken'));
-    // @ts-ignore
-    const role = obj.role;
+    if (localStorage.getItem('accessToken') != null) {
+      const obj = jwt_decode(localStorage.getItem('accessToken'));
+      // @ts-ignore
+      const role = obj.role;
 
-    if (role === 'admin') {
-      return true;
-    }
-    else {
+      if (role === 'admin') {
+        return true;
+      }
+      else {
+        this.router.navigate(['404']);
+      }
+    } else {
       this.router.navigate(['404']);
     }
+
+
+
 
   }
 

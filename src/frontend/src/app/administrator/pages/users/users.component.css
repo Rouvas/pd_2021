@@ -1,0 +1,15 @@
+.container-modal {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.print-user {
+  border: 1px #c8c9ca solid;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  flex: 1;
+}
+
+p {
+  text-align: center;
+}

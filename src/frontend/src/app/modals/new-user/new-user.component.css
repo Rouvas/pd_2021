@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.print-user {
+  border: 1px #c8c9ca solid;
+  border-radius: 5px;
+  width: 400px;
+  margin-bottom: 5px;
+}
+
+p {
+  text-align: center;
+}

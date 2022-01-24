@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class LogincheckService {
 
   authState = false;
+  typeCheck = 0;
 
 }

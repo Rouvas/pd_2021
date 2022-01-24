@@ -1,5 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,8 +36,14 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { TestFacilityComponent } from './testing/test-facility/test-facility.component';
 import {PushNotificationsModule} from 'ng-push';
 import { ToastrModule } from 'ngx-toastr';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { WelcomePageComponent } from './administrator/pages/welcome-page/welcome-page.component';
 import { PassesTableComponent } from './pages/passes-table/passes-table.component';
+import { WebpushesComponent } from './administrator/pages/webpushes/webpushes.component';
+import {environment} from '../environments/environment.prod';
+import { NewUserComponent } from './modals/new-user/new-user.component';
+import { SelectorComponent } from './services/selector/selector.component';
+import { NewUserPrintComponent } from './print/new-user-print/new-user-print.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +65,11 @@ import { PassesTableComponent } from './pages/passes-table/passes-table.componen
     NotfoundComponent,
     TestFacilityComponent,
     WelcomePageComponent,
-    PassesTableComponent
+    PassesTableComponent,
+    WebpushesComponent,
+    NewUserComponent,
+    SelectorComponent,
+    NewUserPrintComponent
   ],
   imports: [
     BrowserModule,
@@ -74,9 +84,15 @@ import { PassesTableComponent } from './pages/passes-table/passes-table.componen
     FormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: true}),
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: environment.production,
+    //   // Register the ServiceWorker as soon as the app is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // })
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

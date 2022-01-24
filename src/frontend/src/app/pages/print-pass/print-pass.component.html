@@ -60,7 +60,7 @@
         </div>
 
         <div class="col right">
-          <qrcode [qrdata]="'http://localhost/verify-pass/id/' + pass._id" [width]="128" [errorCorrectionLevel]="'M'" style="float: right;"></qrcode>
+          <qrcode [qrdata]="'http://'+ '192.168.31.146:4200' + '/verify-pass/id/' + pass._id" [width]="128" [errorCorrectionLevel]="'M'" style="float: right;"></qrcode>
         </div>
       </div>
 

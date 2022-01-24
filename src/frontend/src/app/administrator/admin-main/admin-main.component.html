@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/administrator','users']">Управление пользователями</a>
         </li>
+        <li class="nav-item" *ngIf="subEnabled != 'enabled'">
+          <a class="nav-link" [routerLink]="['/administrator','web-push']">Система уведомлений</a>
+        </li>
       </ul>
     </div>
   </div>

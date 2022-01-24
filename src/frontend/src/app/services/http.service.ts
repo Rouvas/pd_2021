@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import {finalize, map, take} from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {LogincheckService} from './logincheck.service';
+import {BsModalRef} from 'ngx-bootstrap/modal';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import {LogincheckService} from './logincheck.service';
 })
 export class HttpService {
 
-  uri = 'http://localhost:3000/api/';
+  uri = 'http://192.168.31.146:3000/api/';
   token;
 
   passes;
@@ -24,7 +25,11 @@ export class HttpService {
 
   pass: any;
 
-  constructor(private http: HttpClient, private router: Router,
+  users: any;
+
+  departments: any;
+
+  constructor(public http: HttpClient, private router: Router,
               private toastr: ToastrService, private spinner: NgxSpinnerService,
               private lc: LogincheckService) { }
 
@@ -68,10 +73,59 @@ export class HttpService {
     );
   }
 
+  subscribePush(obj): void {
+    this.http.post(this.uri + 'push/subscription/', obj).toPromise().then(
+      res => {console.log(res);
+              localStorage.setItem('web-push', 'enabled');
+      }
+    ).catch(
+      err => console.log(err)
+    );
+  }
+
+  // tslint:disable-next-line:typedef
+  getUsers(){
+    const tokenData = localStorage.getItem('accessToken');
+    return this.http.get(this.uri + 'users/', {headers: {Authorization: 'Bearer ' + tokenData}});
+  }
+
+  addUser(user): void {
+    const tokenData = localStorage.getItem('accessToken');
+    this.http.post(this.uri + 'users', user, {headers: {Authorization: 'Bearer ' + tokenData}}).toPromise()
+      .then(res => {
+        this.toastr.success('Аккаунт успешно создан', 'Создание аккаунта');
+        this.lc.typeCheck = 1;
+      }).catch(err => {
+        if (err.status === 403) {
+          this.toastr.warning('Необходимо перезайти в аккаунт', 'Ошибка №403');
+          this.router.navigate(['login']);
+        } else {
+          this.toastr.warning('Проверьте введенные данные', 'Ошибка №' + err.status);
+        }
+
+        this.lc.typeCheck = 0;
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  getUserInfo(id){
+    const tokenData = localStorage.getItem('accessToken');
+    return this.http.get(this.uri + 'users/' + id, {headers: {Authorization: 'Bearer ' + tokenData}});
+  }
+
   getUser(token: string): void{
     console.log(jwt_decode(localStorage.getItem('accessToken')));
   }
 
+  // Функция отлова товарищей, кому выпадает 403 или 401
+  kickUser(){
+    localStorage.removeItem('accessToken');
+    this.router.navigate(['/']).then(() => {
+      this.toastr.warning('Перезайдите в аккаунт', 'Возникла ошибка доступа!')
+    });
+  }
+
+  // tslint:disable-next-line:typedef
   createPass(pass: any){
     const tokenData = localStorage.getItem('accessToken');
     this.http.post(this.uri + 'pass/', pass, {headers: {Authorization: 'Bearer ' + tokenData}}).toPromise().then(
@@ -81,9 +135,10 @@ export class HttpService {
         console.log(err);
         this.toastr.warning('Возникла ошибка при создании пропуска, проверьте поля ввода!', 'Ошибка №' + err.status);
       }
-    )
+    );
   }
 
+  // tslint:disable-next-line:typedef
   getPasses(){
     const tokenData = localStorage.getItem('accessToken');
     this.http.get(this.uri + 'pass/',  {headers: {Authorization: 'Bearer ' + tokenData}}).toPromise().then(

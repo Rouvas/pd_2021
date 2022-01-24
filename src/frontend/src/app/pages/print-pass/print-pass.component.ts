@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as html2pdf from 'html2pdf.js';
 import {HttpService} from '../../services/http.service';
 
-
 @Component({
   selector: 'app-print-pass',
   templateUrl: './print-pass.component.html',

@@ -1,0 +1,78 @@
+<div class="container justify-content-center" *ngIf="lc.typeCheck === 0">
+  <form>
+    <div class="mb-3">
+      <label for="inputSurname" class="form-label">Фамилия</label>
+      <input type="text" class="form-control" id="inputSurname" [(ngModel)]="user.surname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp">
+    </div>
+
+    <div class="mb-3">
+      <label for="inputName" class="form-label">Имя</label>
+      <input type="text" class="form-control" id="inputName" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp2">
+    </div>
+
+    <div class="mb-3">
+      <label for="inputLastname" class="form-label">Отчество</label>
+      <input type="text" class="form-control" id="inputLastname" [(ngModel)]="user.lastname" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp3">
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="inputType" class="form-label">Тип</label>
+      <select id="inputType" class="form-select" [ngModel]="selectedUserType" (ngModelChange)="onChangeSelect(0,$event)" name="inputType">
+        <option [ngValue]="type" *ngFor="let type of userTypes">{{type.name}}</option>
+      </select>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="inputDepartment" class="form-label">Отдел</label>
+      <select id="inputDepartment" class="form-select" [ngModel]="selectUserDepartment" (ngModelChange)="onChangeSelect(1,$event)" name="inputDepartment">
+        <option *ngFor="let obj of departments">{{obj.department}}</option>
+      </select>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">Пароль</label>
+      <input type="text" class="form-control" id="inputPassword" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" aria-describedby="textHelp3">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" (click)="onCreateUser()">Создать пользователя</button>
+    <hr>
+    <ul>
+      <li>При создании предусмотрена возможность распечать карточку пользователя</li>
+      <li>Логин будет сгенерирован автоматически</li>
+    </ul>
+  </form>
+</div>
+
+
+<div class="container justify-content-center" *ngIf="lc.typeCheck === 1">
+
+  <div class="print-user">
+
+    <p>Карточка пользователя</p>
+
+    <ul>
+      <li>Ф.И.О: {{user.surname}} {{user.name}} {{user.lastname}}</li>
+      <li>Тип пользователя: {{selectedUserType.name}}</li>
+      <li>Отдел: {{user.department != null ? user.department : 'Не указано'}}</li>
+    </ul>
+
+    <hr>
+    <ul>
+      <li>Логин: {{user.login}}</li>
+      <li>Пароль: {{user.password}}</li>
+    </ul>
+
+  </div>
+
+    <button type="submit" class="btn btn-primary" (click)="onPrintUser()">Скачать карточку пользователя (PDF)</button>
+</div>
+
+
+

@@ -1,5 +1,7 @@
 # PolyPACS
 
+3, 11, 15, 16, 18, 20, 23, 26, 28, 29, 31, 34, 35, 36, 37, 38, 39, 40 - 49
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
 ## Development server
