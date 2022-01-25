@@ -162,13 +162,19 @@ export class HttpService {
   }
 
   setPassStatus(id, status) {
+    console.log(status)
     const tokenData = localStorage.getItem('accessToken');
-    return this.http.patch(this.uri + 'pass/change-status/' + id, status, {headers: {Authorization: 'Bearer ' + tokenData}})
+    return this.http.patch(this.uri + 'pass/change-status/' + id, {status}, {headers: {Authorization: 'Bearer ' + tokenData}})
       .toPromise()
       .then(
-        () =>
-        this.toastr.success('Статус успешно сменен на "Действителен"', 'Смена статуса пропуска')
-           )
+        () => {
+          if (status === '1') {
+            this.toastr.success('Статус успешно сменен на "Действителен"', 'Смена статуса пропуска');
+          } else {
+            this.toastr.success('Статус успешно сменен на "Закрыт"', 'Смена статуса пропуска');
+          }
+        }
+          )
       .catch(
         err => {
           if (err.status === 403) {

@@ -18,7 +18,8 @@ module.exports = {
     }
   },
   bureauCheck: (req, res, next) => {
-    if (req.tokenData.role === 'bureau') {
+    console.log(req.tokenData);
+    if (req.tokenData.role === 'bureau' || req.tokenData.role === 'admin') {
       next()
     } else {
       res.status(401).send({message: "Доступ закрыт!"})

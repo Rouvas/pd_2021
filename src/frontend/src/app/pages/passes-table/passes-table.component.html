@@ -27,7 +27,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass._id, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>
@@ -61,7 +61,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass._id, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>
@@ -93,7 +93,7 @@
               <td *ngIf="pass.status === '0'">Заказан</td>
               <td *ngIf="pass.status === '1'">Действителен</td>
               <td *ngIf="pass.status === '2'">Закрыт</td>
-              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass.uniqueId, pass.status)"><a class="btn">&#9881;</a></td>
+              <td style="text-align: center" (click)="openModal(openpass, pass.surname, pass._id, pass.status)"><a class="btn">&#9881;</a></td>
             </tr>
 
             </tbody>

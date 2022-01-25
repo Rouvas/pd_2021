@@ -50,7 +50,7 @@ webpush.setVapidDetails('http://localhost:8000/', PUBLIC_VAPID, PRIVATE_VAPID);
 
 
 // Routes middlewares
-app.use('/api/auth', jwtCheck, authRoutes)
+app.use('/api/auth', authRoutes)
 app.use('/api/users', jwtCheck, hackCheck, adminCheck, userRoutes)
 app.use('/api/pass', jwtCheck, passRoutes)
 app.use('/api/department', jwtCheck, departmentRoutes)
